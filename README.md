@@ -181,3 +181,27 @@ var rotate = function (matrix) {
   return matrix;
 };
 ```
+
+## Dynamic Programming
+
+### Climbing Stairs - Easy
+
+https://leetcode.com/problems/climbing-stairs
+
+> initialise 1st and 2nd step in dp 1 and dp 2, then just find dp i by adding dp i - 1 and dp i - 2, Similar to fibonacci in reverse
+
+```javascript
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function (n) {
+  let dp = [];
+  dp[1] = 1;
+  dp[2] = 2;
+  for (let i = 3; i <= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+  return dp[n];
+};
+```
