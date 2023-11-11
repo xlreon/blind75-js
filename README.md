@@ -206,6 +206,36 @@ var climbStairs = function (n) {
 };
 ```
 
+### Unique Paths - Medium
+
+https://leetcode.com/problems/unique-paths/
+
+> set first row and first column of m x n dp array with 1 since robot can only reach with 1 move to those locations. For rest of the cells the value will be the sum of top and left cells in the dp matrix. Return last cell of dp array
+
+```javascript
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function (m, n) {
+  let dp = Array.from(Array(m), () => new Array(n));
+
+  for (let i = 0; i < m; i++) {
+    dp[i][0] = 1;
+  }
+  for (let j = 0; j < n; j++) {
+    dp[0][j] = 1;
+  }
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+    }
+  }
+  return dp[m - 1][n - 1];
+};
+```
+
 ## Linked List
 
 ### Linked List Cycle - Easy
