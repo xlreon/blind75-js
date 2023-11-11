@@ -205,3 +205,43 @@ var climbStairs = function (n) {
   return dp[n];
 };
 ```
+
+## Linked List
+
+### Linked List Cycle - Easy
+
+https://leetcode.com/problems/linked-list-cycle/
+
+> take 2 pointers fast and slow, if there is a cycle which only can be from the end of the list then fast and slow will meet and will be the same. In that case we can return true
+
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function (head) {
+  if (!head) return false;
+
+  let fast = head;
+  let slow = head;
+
+  while (fast) {
+    if (!fast.next) {
+      return false;
+    } else {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    if (fast === slow) return true;
+  }
+  return false;
+};
+```
