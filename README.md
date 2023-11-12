@@ -28,6 +28,36 @@ var twoSum = function (nums, target) {
 };
 ```
 
+### Container With Most Water - Medium
+
+https://leetcode.com/problems/container-with-most-water/
+
+> take left and right pointer, check min height between both and multiply by distance between left and right and store it to max area, check which height is smaller and accordingly update left + 1 and right - 1
+
+```javascript
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+  let left = 0;
+  let right = height.length - 1;
+  let maxima = 0;
+  while (left < right) {
+    if (height[left] <= height[right]) {
+      let area = height[left] * (right - left);
+      maxima = Math.max(maxima, area);
+      left++;
+    } else {
+      let area = height[right] * (right - left);
+      maxima = Math.max(maxima, area);
+      right--;
+    }
+  }
+  return maxima;
+};
+```
+
 ### Min in Rotated Sorted Array - Medium
 
 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
