@@ -512,3 +512,28 @@ var countSubstrings = function (s) {
   return count;
 };
 ```
+
+### Group Anagrams - Medium
+
+https://leetcode.com/problems/group-anagrams
+
+> create a map, sort every string and add to map, for every string check it's equivalent sorted thing in map and add it to the values
+
+```javascript
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
+  let map = {};
+  for (let i = 0; i < strs.length; i++) {
+    let currentKey = strs[i].split("").sort().join("");
+    if (!map[currentKey]) {
+      map[currentKey] = [strs[i]];
+    } else {
+      map[currentKey] = [...map[currentKey], strs[i]];
+    }
+  }
+  return Object.values(map);
+};
+```
