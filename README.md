@@ -275,3 +275,38 @@ var hasCycle = function (head) {
   return false;
 };
 ```
+## Tree
+
+### Kth Smallest Element in a BST
+
+https://leetcode.com/problems/kth-smallest-element-in-a-bst
+
+> do inorder traversal of BST and store in an array, return the element at kth index from the ans array
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthSmallest = function(root, k) {
+   let ans = [] 
+   inOrder(root, ans)
+   return ans[k-1]
+};
+
+function inOrder(root, ans) {
+    if(!root) return
+    inOrder(root.left, ans)
+    ans.push(root.val)
+    inOrder(root.right, ans)
+}
+```
