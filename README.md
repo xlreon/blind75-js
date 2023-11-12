@@ -28,6 +28,28 @@ var twoSum = function (nums, target) {
 };
 ```
 
+### Maximum Subarray - Medium
+
+https://leetcode.com/problems/maximum-subarray/
+
+> loop through array, check if curr max is max or current element+ that element is max if max add to max array and update global maximum
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+  let max = nums[0];
+  let currMax = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    currMax = Math.max(nums[i], currMax + nums[i]);
+    max = Math.max(max, currMax);
+  }
+  return max;
+};
+```
+
 ### Product of Array Except Self - Medium
 
 https://leetcode.com/problems/product-of-array-except-self/
