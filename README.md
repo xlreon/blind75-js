@@ -277,7 +277,7 @@ var hasCycle = function (head) {
 ```
 ## Tree
 
-### Kth Smallest Element in a BST
+### Kth Smallest Element in a BST - Medium
 
 https://leetcode.com/problems/kth-smallest-element-in-a-bst
 
