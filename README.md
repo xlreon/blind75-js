@@ -445,9 +445,39 @@ var invertTree = function (root) {
 };
 ```
 
+### Invert a Binary Tree - Easy
+
+https://leetcode.com/problems/same-tree
+
+> check if p and q is null return true, if p and q not equal return false, if both p.val === q.val check recursive for p.left and q.left and p.right and q.right otherwise return false.
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function (p, q) {
+  if (!p && !q) return true;
+  if (!p || !q) return false;
+  if (p.val === q.val)
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+  return false;
+};
+```
+
 ### Lowest Common Ancestor - Medium
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+/
 
 > Check if both p and q are less then node update root to left of tree and if both p and q are right of the node move root to right, if p is less the node and q is greater then node then we have found the ans
 
