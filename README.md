@@ -28,6 +28,32 @@ var twoSum = function (nums, target) {
 };
 ```
 
+### Min in Rotated Sorted Array - Medium
+
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+
+> binary search, start from left and right and mid pointers, check if mid is less than num right then move left to mid + 1 orelse move right to mid and repeat the process until left < right
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function (nums) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] > nums[right]) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+  return nums[left];
+};
+```
+
 ### Buy Sell Stocks - Easy
 
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
@@ -275,6 +301,7 @@ var hasCycle = function (head) {
   return false;
 };
 ```
+
 ## Tree
 
 ### Kth Smallest Element in a BST - Medium
@@ -297,17 +324,17 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function(root, k) {
-   let ans = [] 
-   inOrder(root, ans)
-   return ans[k-1]
+var kthSmallest = function (root, k) {
+  let ans = [];
+  inOrder(root, ans);
+  return ans[k - 1];
 };
 
 function inOrder(root, ans) {
-    if(!root) return
-    inOrder(root.left, ans)
-    ans.push(root.val)
-    inOrder(root.right, ans)
+  if (!root) return;
+  inOrder(root.left, ans);
+  ans.push(root.val);
+  inOrder(root.right, ans);
 }
 ```
 
@@ -330,13 +357,14 @@ https://leetcode.com/problems/invert-binary-tree/
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var invertTree = function(root) {
-   if(root) {
-       [root.left, root.right] = [invertTree(root.right), invertTree(root.left)]
-   }
-   return root
+var invertTree = function (root) {
+  if (root) {
+    [root.left, root.right] = [invertTree(root.right), invertTree(root.left)];
+  }
+  return root;
 };
 ```
+
 ### Lowest Common Ancestor - Medium
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
@@ -358,15 +386,15 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
-    if(p.val < root.val && q.val < root.val) {
-        return lowestCommonAncestor(root.left, p, q)
-    } else if(p.val > root.val && q.val > root.val) {
-        return lowestCommonAncestor(root.right, p, q)
-    } else {
-        return root
-    }
- };
+var lowestCommonAncestor = function (root, p, q) {
+  if (p.val < root.val && q.val < root.val) {
+    return lowestCommonAncestor(root.left, p, q);
+  } else if (p.val > root.val && q.val > root.val) {
+    return lowestCommonAncestor(root.right, p, q);
+  } else {
+    return root;
+  }
+};
 ```
 
 ## Strings
@@ -382,25 +410,25 @@ https://leetcode.com/problems/palindromic-substrings/
  * @param {string} s
  * @return {number}
  */
-var countSubstrings = function(s) {
-    let count = 0
+var countSubstrings = function (s) {
+  let count = 0;
 
-    for(let i = 0; i<s.length; i++) {
-        let left = i;
-        let right = i;
+  for (let i = 0; i < s.length; i++) {
+    let left = i;
+    let right = i;
 
-        //odd
-        helper(left, right)
-        //even
-        helper(left, right+1)
-    } 
-    function helper(left, right) {
-        while(left >=0 && right < s.length && s[left] === s[right]) {
-            count++;
-            left--;
-            right++;
-        }
+    //odd
+    helper(left, right);
+    //even
+    helper(left, right + 1);
+  }
+  function helper(left, right) {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+      count++;
+      left--;
+      right++;
     }
-    return count
+  }
+  return count;
 };
 ```
