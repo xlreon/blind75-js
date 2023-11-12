@@ -28,6 +28,34 @@ var twoSum = function (nums, target) {
 };
 ```
 
+### Product of Array Except Self - Medium
+
+https://leetcode.com/problems/product-of-array-except-self/
+
+> create a forward array and backward array and then multiply both, to optimise update the forward array to final array instead of having backward array
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function (nums) {
+  let forward = [];
+  let start1 = 1;
+  let backward = [];
+  let start2 = 1;
+  for (let i = 0; i < nums.length; i++) {
+    forward.push(start1);
+    start1 = start1 * nums[i];
+  }
+  for (let i = nums.length - 1; i >= 0; i--) {
+    backward.unshift(start2);
+    start2 = start2 * nums[i];
+  }
+  return forward.map((ele, i) => ele * backward[i]);
+};
+```
+
 ### Container With Most Water - Medium
 
 https://leetcode.com/problems/container-with-most-water/
