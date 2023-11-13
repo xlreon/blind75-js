@@ -525,6 +525,44 @@ var maxDepth = function(root) {
 };
 ```
 
+### Level Order Traversal - Medium
+
+https://leetcode.com/problems/binary-tree-level-order-traversal/
+> do bfs and for every level keep adding the children to level arr and add the level array to result
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+    if(!root) return []
+   let queue = [root]; 
+    let res = [];
+   while(queue.length) {
+       let levelNodes = [];
+       let levelLen = queue.length
+       while(levelLen) {
+        let current = queue.shift()
+        if(current.left) queue.push(current.left)
+        if(current.right) queue.push(current.right)
+        levelNodes.push(current.val)
+        levelLen--
+       }
+        res.push(levelNodes)
+   }
+   return res;
+};
+```
+
 ### Lowest Common Ancestor - Medium
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
