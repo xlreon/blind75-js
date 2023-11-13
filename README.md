@@ -445,7 +445,7 @@ var invertTree = function (root) {
 };
 ```
 
-### Invert a Binary Tree - Easy
+### Same Tree - Easy
 
 https://leetcode.com/problems/same-tree
 
@@ -472,6 +472,34 @@ var isSameTree = function (p, q) {
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
   return false;
 };
+```
+
+### Valid Binary Search Tree - Medium
+
+https://leetcode.com/problems/validate-binary-search-tree/description/
+> check if root is null return true, check if root < left or root > right return false, recurse with left updating max and recurse with right updating minimum 
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isValidBST = function(root) {
+    function helper(root, min, max) {
+        if(root === null) return true
+        if(root.val <= min || root.val >= max) return false
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max)
+    } 
+    return helper(root, -Infinity, Infinity)
+ };
 ```
 
 ### Lowest Common Ancestor - Medium
