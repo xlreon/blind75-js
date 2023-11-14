@@ -27,6 +27,43 @@ var twoSum = function (nums, target) {
   }
 };
 ```
+### 3Sum - Medium
+
+https://leetcode.com/problems/3sum/
+
+> take 3 pointer I is start j is I+1 and k is last, check for edge cases where I and I+1 element is equal the keep doing I++ similarly check for j and k ,if sum is < 0 then j++ or else do k--
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+   if(nums.length === 0) return []
+    nums = nums.sort((a,b) => a-b)
+    let res = [];
+    for(let i = 0; i<nums.length -2; i++) {
+        if(i>0 && nums[i] === nums[i-1]) continue;
+        let j = i + 1;
+        let k = nums.length - 1
+        while(j < k) {
+            let sum = nums[i] + nums[j] + nums[k]
+            if(sum === 0) {
+                res.push([nums[i], nums[j], nums[k]])
+                while(nums[j] === nums[j+1]) j++
+                while(nums[k] === nums[k+1]) k--
+                j++
+                k--
+            } else if(sum<0) {
+               j++ 
+            } else {
+                k--
+            }
+        }
+    }
+    return res;
+};
+```
 
 ### Maximum Subarray - Medium
 
