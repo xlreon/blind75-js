@@ -700,6 +700,61 @@ var lowestCommonAncestor = function (root, p, q) {
 
 ## Strings
 
+### Minimum Window Substring - Hard
+
+https://leetcode.com/problems/minimum-window-substring/description/
+
+> take t and create a freqMap from it, take 2 pointers left and right, iterate over the string and check if the right letter is in the freqMap then decrease the freq of that letter and check if freq is 0 then decrease count by 1, increase right by 1, loop until count is zero and check if right-left is greater then minLen then update minString orelse update the left pointer by checking if left is in freqMap then increase letter freq by 1 and if now the letter count is > 0 then increase count by 1, increase left pinter by 1
+
+```javascript
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function(s, t) {
+   let map = new Map()
+
+   for(let letter of t) {
+       if(map.has(letter)) {
+           map.set(letter, map.get(letter)+1)
+       } else {
+           map.set(letter, 1)
+       }
+   }
+
+   let left = 0;
+   let right = 0;
+   let count = map.size;
+   let len = Infinity
+   let minWindow = ''
+
+   while(right < s.length) {
+       let rLetter = s[right]
+       if(map.has(rLetter)) {
+           map.set(rLetter, map.get(rLetter)-1)
+           if(map.get(rLetter) === 0) count--;
+       }
+        right++
+
+       while(count === 0) {
+           if(right - left < len) {
+               len = right - left
+               minWindow = s.slice(left, right)
+           }
+
+           let lLetter = s[left]
+           if(map.has(lLetter)) {
+               map.set(lLetter, map.get(lLetter) + 1)
+               if(map.get(lLetter) > 0) count++
+           }
+           left++
+       }
+   }
+   return minWindow
+};
+```
+
 ### Palindromic Substrings - Medium
 
 https://leetcode.com/problems/palindromic-substrings/
