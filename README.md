@@ -514,6 +514,46 @@ var hasCycle = function (head) {
 };
 ```
 
+### Remove Nth Node From End of List - Medium
+
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+
+> Take 3 pointers, dummy, left and right, move right for n times then shift right and left till right is at the end of list, finally just assign left.next to left.next.next to delete the node at nth place from last in linked list
+
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    let left = dummy
+    let right = head
+
+    while(right && n>0) {
+        right = right.next
+        n -= 1
+    }
+
+    while(right) {
+        left = left.next
+        right = right.next
+    }
+
+    left.next = left.next.next
+    return dummy.next
+};
+```
+
 ## Tree
 
 ### Kth Smallest Element in a BST - Medium
