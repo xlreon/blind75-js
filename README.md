@@ -416,6 +416,36 @@ var uniquePaths = function (m, n) {
 
 ## Linked List
 
+### Reverse Linked List - Easy
+
+https://leetcode.com/problems/reverse-linked-list/description/
+
+> Take 2 pointers, prev and next, check if head is not null then update nextNode to be head.next then update head.next to be prev and then move prev to head then update head to nextNode
+
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+  let prev = null;
+  while(head) {
+      let nextNode = head.next
+      head.next = prev
+      prev = head
+      head = nextNode
+  }
+  return prev
+};
+```
+
 ### Linked List Cycle - Easy
 
 https://leetcode.com/problems/linked-list-cycle/
