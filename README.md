@@ -412,6 +412,33 @@ https://leetcode.com/problems/jump-game/description/
 };
 ```
 
+### Coin Change - Medium
+
+https://leetcode.com/problems/coin-change/description/
+
+> take dp array with size as amount, loop the dp and for each iteration loop through the coins array and check if coins exists then add 1 or else take min(dp[currnamt], 1+dp[curramt-coin])
+
+```javascript
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+ var coinChange = function(coins, amount) {
+    let dp = Array(amount+1).fill(Infinity)
+    dp[0] = 0
+
+    for(let currAmt = 1; currAmt <= amount; currAmt++) {
+        for(let coin of coins) {
+            if(currAmt-coin >= 0) {
+                dp[currAmt] = Math.min(dp[currAmt], 1+dp[currAmt-coin])
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount]
+};
+```
+
 ### Climbing Stairs - Easy
 
 https://leetcode.com/problems/climbing-stairs
