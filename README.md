@@ -736,6 +736,25 @@ var lengthOfLongestSubstring = function(s) {
 };
 ```
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+   let set = new Set(nums)
+    let streak  = 0
+   for(let num of set) {
+       if(set.has(num - 1)) continue
+       let currentStreak = 1
+       while(set.has(num+1)) {
+           currentStreak++
+           num++
+       }
+       streak = Math.max(streak, currentStreak)
+   }
+   return streak
+};
+
 ### Group Anagrams - Medium
 
 https://leetcode.com/problems/group-anagrams
@@ -758,5 +777,32 @@ var groupAnagrams = function (strs) {
     }
   }
   return Object.values(map);
+};
+```
+
+### Longest Consecutive Sequence - Medium
+
+https://leetcode.com/problems/longest-consecutive-sequence/
+
+> Initialise a set with given nums array, iterate over the set and check if current number - 1 is there in the set to check if its a start of new sequence or not, if its a new sequence increament streak and increment num, finally find the longest of current streak and overall streak and return it.
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+   let set = new Set(nums)
+    let streak  = 0
+   for(let num of set) {
+       if(set.has(num - 1)) continue
+       let currentStreak = 1
+       while(set.has(num+1)) {
+           currentStreak++
+           num++
+       }
+       streak = Math.max(streak, currentStreak)
+   }
+   return streak
 };
 ```
