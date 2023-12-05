@@ -392,6 +392,26 @@ var longestCommonSubsequence = function(text1, text2) {
 };
 ```
 
+### Jump Game - Medium
+
+https://leetcode.com/problems/jump-game/description/
+
+> iterate from the last and check if i + element is greater than target (length of array) then we can reach the specific index so new target is i, if the target is 0 then we return true or false';
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+ var canJump = function(nums) {
+    let target = nums.length - 1
+    for(let i = nums.length - 1; i>=0; i--) {
+        if(i+nums[i] >= target) target = i
+    }
+    return target === 0
+};
+```
+
 ### Climbing Stairs - Easy
 
 https://leetcode.com/problems/climbing-stairs
