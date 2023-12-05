@@ -412,6 +412,33 @@ https://leetcode.com/problems/jump-game/description/
 };
 ```
 
+### House Robber - Medium
+
+https://leetcode.com/problems/house-robber/description/
+
+> if empty array return 0 or if 1 element return element or else take a dp array and take assign 0 index to first element and 1 index to max of 1&2 elements, iterste from 2 to length of array and add the element to dp array which is max of either i-2 + I element or i-1, finally return the last element of dp array.
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var rob = function(nums) {
+    if(nums.length === 0) return 0
+    if(nums.length === 1) return nums[0]
+
+    let dp = Array(nums.length).fill(0)
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0],nums[1])
+
+    for(let i = 2; i<nums.length; i++) {
+        dp[i] = Math.max(nums[i]+dp[i-2], dp[i-1])
+    }
+
+    return dp[dp.length-1]
+};
+```
+
 ### Coin Change - Medium
 
 https://leetcode.com/problems/coin-change/description/
