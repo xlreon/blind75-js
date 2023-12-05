@@ -704,6 +704,38 @@ var countSubstrings = function (s) {
 };
 ```
 
+### Longest Substring without repeating charactersPalindromic Substrings - Medium
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+> Take a set and left, and right pointers, check if right is not in set add to set and find the size of set which has the longest string, if set does already has the character remove the character from the set and increase left by 1. Do this until right is less than string length
+
+```javascript
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+   let longest = 0
+   let left = 0
+   let right = 0
+   let set = new Set()
+
+   while(right < s.length) {
+       const letter = s[right]
+       if(!set.has(letter)) {
+           set.add(letter)
+           longest = Math.max(set.size, longest)
+           right++
+       } else {
+           set.delete(s[left])
+           left++
+       }
+   }
+   return longest
+};
+```
+
 ### Group Anagrams - Medium
 
 https://leetcode.com/problems/group-anagrams
