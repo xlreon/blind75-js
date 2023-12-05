@@ -362,6 +362,36 @@ var rotate = function (matrix) {
 
 ## Dynamic Programming
 
+### Longest Common Subsequence - Medium
+
+https://leetcode.com/problems/longest-common-subsequence/description/
+
+> Take a dp array, initialise the dp matrix with 0, if text[i-1] === text[j-1] is same then take the left diagonal element and add 1 to it orelse take the max of upper and left cells, finally return the last cell of the dp array
+
+```javascript
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ */
+var longestCommonSubsequence = function(text1, text2) {
+    let m = text1.length
+    let n = text2.length
+    let dp = Array.from(Array(m+1), () => new Array(n+1).fill(0))
+
+    for(let i = 1; i <= m; i++) {
+        for(let j = 1; j <= n; j++) {
+            if(text1[i-1] === text2[j-1]) {
+                dp[i][j] = dp[i-1][j-1] + 1
+            } else {
+                dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j])
+            }
+        }
+    }
+    return dp[m][n]
+};
+```
+
 ### Climbing Stairs - Easy
 
 https://leetcode.com/problems/climbing-stairs
