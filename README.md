@@ -787,3 +787,37 @@ var longestConsecutive = function(nums) {
    return streak
 };
 ```
+
+### Longest Palindromic Substring - Medium
+
+https://leetcode.com/problems/longest-palindromic-substring/description/
+
+> define a palin function, check if left and right are equal then decrease left and increase right unless left and right are in bounds, do this for odd string where left==right and evenStrings where left = i and right = i +1, find which is longest and return it
+
+```javascript
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var longestPalindrome = function(s) {
+    let largest = '';
+    function isPalin(s, left, right) {
+         while(left >=0 && right < s.length && s[left] === s[right]) {
+             left--;
+             right++;
+         }
+         return s.slice(left+1, right)
+    }
+ 
+     for(let i = 0; i < s.length; i++) {
+         let oddPal = isPalin(s,i,i)
+         let evenPal = isPalin(s,i, i+1)
+ 
+         let currLargest = oddPal.length > evenPal.length ? oddPal : evenPal
+         if(currLargest.length > largest.length) {
+             largest = currLargest
+         }
+     }
+     return largest
+ };
+```
