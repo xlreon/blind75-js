@@ -27,6 +27,7 @@ var twoSum = function (nums, target) {
   }
 };
 ```
+
 ### 3Sum - Medium
 
 https://leetcode.com/problems/3sum/
@@ -38,30 +39,30 @@ https://leetcode.com/problems/3sum/
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
-   if(nums.length === 0) return []
-    nums = nums.sort((a,b) => a-b)
-    let res = [];
-    for(let i = 0; i<nums.length -2; i++) {
-        if(i>0 && nums[i] === nums[i-1]) continue;
-        let j = i + 1;
-        let k = nums.length - 1
-        while(j < k) {
-            let sum = nums[i] + nums[j] + nums[k]
-            if(sum === 0) {
-                res.push([nums[i], nums[j], nums[k]])
-                while(nums[j] === nums[j+1]) j++
-                while(nums[k] === nums[k+1]) k--
-                j++
-                k--
-            } else if(sum<0) {
-               j++ 
-            } else {
-                k--
-            }
-        }
+var threeSum = function (nums) {
+  if (nums.length === 0) return [];
+  nums = nums.sort((a, b) => a - b);
+  let res = [];
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    let j = i + 1;
+    let k = nums.length - 1;
+    while (j < k) {
+      let sum = nums[i] + nums[j] + nums[k];
+      if (sum === 0) {
+        res.push([nums[i], nums[j], nums[k]]);
+        while (nums[j] === nums[j + 1]) j++;
+        while (nums[k] === nums[k + 1]) k--;
+        j++;
+        k--;
+      } else if (sum < 0) {
+        j++;
+      } else {
+        k--;
+      }
     }
-    return res;
+  }
+  return res;
 };
 ```
 
@@ -170,6 +171,7 @@ var findMin = function (nums) {
   return nums[left];
 };
 ```
+
 ### Search in Rotated Sorted Array - Medium
 
 https://leetcode.com/problems/search-in-rotated-sorted-array
@@ -182,28 +184,28 @@ https://leetcode.com/problems/search-in-rotated-sorted-array
  * @param {number} target
  * @return {number}
  */
-var search = function(nums, target) {
-    let left = 0 
-    let right = nums.length - 1
-    while(left <= right) {
-        let mid = Math.floor((right+left)/2)
-        if(nums[mid] ===  target) return mid
-        if(nums[right] > nums[mid]) {
-            if(target > nums[mid] && target <= nums[right]) {
-                left = mid + 1
-            } else {
-                right = mid - 1
-            }
-        } else {
-            if(target < nums[mid] && target >= nums[left]) {
-                right = mid - 1
-            } else {
-                left = mid + 1
-            }
-        }
+var search = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((right + left) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[right] > nums[mid]) {
+      if (target > nums[mid] && target <= nums[right]) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    } else {
+      if (target < nums[mid] && target >= nums[left]) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
     }
-    return -1;
- };
+  }
+  return -1;
+};
 ```
 
 ### Buy Sell Stocks - Easy
@@ -417,21 +419,21 @@ https://leetcode.com/problems/longest-common-subsequence/description/
  * @param {string} text2
  * @return {number}
  */
-var longestCommonSubsequence = function(text1, text2) {
-    let m = text1.length
-    let n = text2.length
-    let dp = Array.from(Array(m+1), () => new Array(n+1).fill(0))
+var longestCommonSubsequence = function (text1, text2) {
+  let m = text1.length;
+  let n = text2.length;
+  let dp = Array.from(Array(m + 1), () => new Array(n + 1).fill(0));
 
-    for(let i = 1; i <= m; i++) {
-        for(let j = 1; j <= n; j++) {
-            if(text1[i-1] === text2[j-1]) {
-                dp[i][j] = dp[i-1][j-1] + 1
-            } else {
-                dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j])
-            }
-        }
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (text1[i - 1] === text2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+      }
     }
-    return dp[m][n]
+  }
+  return dp[m][n];
 };
 ```
 
@@ -446,12 +448,12 @@ https://leetcode.com/problems/jump-game/description/
  * @param {number[]} nums
  * @return {boolean}
  */
- var canJump = function(nums) {
-    let target = nums.length - 1
-    for(let i = nums.length - 1; i>=0; i--) {
-        if(i+nums[i] >= target) target = i
-    }
-    return target === 0
+var canJump = function (nums) {
+  let target = nums.length - 1;
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (i + nums[i] >= target) target = i;
+  }
+  return target === 0;
 };
 ```
 
@@ -466,19 +468,19 @@ https://leetcode.com/problems/house-robber/description/
  * @param {number[]} nums
  * @return {number}
  */
- var rob = function(nums) {
-    if(nums.length === 0) return 0
-    if(nums.length === 1) return nums[0]
+var rob = function (nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return nums[0];
 
-    let dp = Array(nums.length).fill(0)
-    dp[0] = nums[0]
-    dp[1] = Math.max(nums[0],nums[1])
+  let dp = Array(nums.length).fill(0);
+  dp[0] = nums[0];
+  dp[1] = Math.max(nums[0], nums[1]);
 
-    for(let i = 2; i<nums.length; i++) {
-        dp[i] = Math.max(nums[i]+dp[i-2], dp[i-1])
-    }
+  for (let i = 2; i < nums.length; i++) {
+    dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+  }
 
-    return dp[dp.length-1]
+  return dp[dp.length - 1];
 };
 ```
 
@@ -494,18 +496,18 @@ https://leetcode.com/problems/coin-change/description/
  * @param {number} amount
  * @return {number}
  */
- var coinChange = function(coins, amount) {
-    let dp = Array(amount+1).fill(Infinity)
-    dp[0] = 0
+var coinChange = function (coins, amount) {
+  let dp = Array(amount + 1).fill(Infinity);
+  dp[0] = 0;
 
-    for(let currAmt = 1; currAmt <= amount; currAmt++) {
-        for(let coin of coins) {
-            if(currAmt-coin >= 0) {
-                dp[currAmt] = Math.min(dp[currAmt], 1+dp[currAmt-coin])
-            }
-        }
+  for (let currAmt = 1; currAmt <= amount; currAmt++) {
+    for (let coin of coins) {
+      if (currAmt - coin >= 0) {
+        dp[currAmt] = Math.min(dp[currAmt], 1 + dp[currAmt - coin]);
+      }
     }
-    return dp[amount] > amount ? -1 : dp[amount]
+  }
+  return dp[amount] > amount ? -1 : dp[amount];
 };
 ```
 
@@ -581,15 +583,15 @@ https://leetcode.com/problems/reverse-linked-list/description/
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
+var reverseList = function (head) {
   let prev = null;
-  while(head) {
-      let nextNode = head.next
-      head.next = prev
-      prev = head
-      head = nextNode
+  while (head) {
+    let nextNode = head.next;
+    head.next = prev;
+    prev = head;
+    head = nextNode;
   }
-  return prev
+  return prev;
 };
 ```
 
@@ -612,29 +614,29 @@ https://leetcode.com/problems/merge-two-sorted-lists/description/
  * @param {ListNode} list2
  * @return {ListNode}
  */
-var mergeTwoLists = function(list1, list2) {
-   let dummy = new ListNode(0)
-   let head = dummy
+var mergeTwoLists = function (list1, list2) {
+  let dummy = new ListNode(0);
+  let head = dummy;
 
-   while(list1 && list2) {
-       if(list1.val <= list2.val) {
-           dummy.next = list1
-           list1 = list1.next
-       } else {
-           dummy.next = list2
-           list2 = list2.next
-       }
-       dummy = dummy.next
-   }
+  while (list1 && list2) {
+    if (list1.val <= list2.val) {
+      dummy.next = list1;
+      list1 = list1.next;
+    } else {
+      dummy.next = list2;
+      list2 = list2.next;
+    }
+    dummy = dummy.next;
+  }
 
-   if(list1) {
-       dummy.next = list1
-   } else {
-       dummy.next = list2
-   }
+  if (list1) {
+    dummy.next = list1;
+  } else {
+    dummy.next = list2;
+  }
 
-   return head.next
-}
+  return head.next;
+};
 ```
 
 ### Merge K sorted Lists - Hard
@@ -655,43 +657,43 @@ https://leetcode.com/problems/merge-k-sorted-lists/description/
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
- var mergeKLists = function(lists) {
-    if(lists.length === 0) return null
+var mergeKLists = function (lists) {
+  if (lists.length === 0) return null;
 
-    while(lists.length > 1) {
-        let list1 = lists.shift()
-        let list2 = lists.shift()
+  while (lists.length > 1) {
+    let list1 = lists.shift();
+    let list2 = lists.shift();
 
-        let merged = mergeLists(list1, list2)
+    let merged = mergeLists(list1, list2);
 
-        lists.push(merged)
-    }
+    lists.push(merged);
+  }
 
-    return lists[0]
+  return lists[0];
 };
 
 function mergeLists(l1, l2) {
-    let dummy = new ListNode(0)
-    let head = dummy
+  let dummy = new ListNode(0);
+  let head = dummy;
 
-    while(l1 && l2) {
-        if(l1.val <= l2.val) {
-            dummy.next = l1
-            l1 = l1.next
-        } else {
-            dummy.next = l2
-            l2 = l2.next
-        }
-        dummy = dummy.next
-    }
-
-    if(l1 === null) {
-        dummy.next = l2
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      dummy.next = l1;
+      l1 = l1.next;
     } else {
-        dummy.next = l1
+      dummy.next = l2;
+      l2 = l2.next;
     }
+    dummy = dummy.next;
+  }
 
-    return head.next
+  if (l1 === null) {
+    dummy.next = l2;
+  } else {
+    dummy.next = l1;
+  }
+
+  return head.next;
 }
 ```
 
@@ -752,24 +754,24 @@ https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
-    let dummy = new ListNode(0)
-    dummy.next = head
-    let left = dummy
-    let right = head
+var removeNthFromEnd = function (head, n) {
+  let dummy = new ListNode(0);
+  dummy.next = head;
+  let left = dummy;
+  let right = head;
 
-    while(right && n>0) {
-        right = right.next
-        n -= 1
-    }
+  while (right && n > 0) {
+    right = right.next;
+    n -= 1;
+  }
 
-    while(right) {
-        left = left.next
-        right = right.next
-    }
+  while (right) {
+    left = left.next;
+    right = right.next;
+  }
 
-    left.next = left.next.next
-    return dummy.next
+  left.next = left.next.next;
+  return dummy.next;
 };
 ```
 
@@ -868,7 +870,8 @@ var isSameTree = function (p, q) {
 ### Valid Binary Search Tree - Medium
 
 https://leetcode.com/problems/validate-binary-search-tree/description/
-> check if root is null return true, check if root < left or root > right return false, recurse with left updating max and recurse with right updating minimum 
+
+> check if root is null return true, check if root < left or root > right return false, recurse with left updating max and recurse with right updating minimum
 
 ```javascript
 /**
@@ -883,18 +886,22 @@ https://leetcode.com/problems/validate-binary-search-tree/description/
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) {
-    function helper(root, min, max) {
-        if(root === null) return true
-        if(root.val <= min || root.val >= max) return false
-        return helper(root.left, min, root.val) && helper(root.right, root.val, max)
-    } 
-    return helper(root, -Infinity, Infinity)
- };
+var isValidBST = function (root) {
+  function helper(root, min, max) {
+    if (root === null) return true;
+    if (root.val <= min || root.val >= max) return false;
+    return (
+      helper(root.left, min, root.val) && helper(root.right, root.val, max)
+    );
+  }
+  return helper(root, -Infinity, Infinity);
+};
 ```
+
 ### Max Depth Binary Tree - Easy
 
 https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+
 > if rootnull return 0 is base case, or return 1 + Max of either left or right subtree
 
 ```javascript
@@ -910,15 +917,16 @@ https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root) {
-    if(!root) return 0
-   return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
+var maxDepth = function (root) {
+  if (!root) return 0;
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
 };
 ```
 
 ### Level Order Traversal - Medium
 
 https://leetcode.com/problems/binary-tree-level-order-traversal/
+
 > do bfs and for every level keep adding the children to level arr and add the level array to result
 
 ```javascript
@@ -934,23 +942,23 @@ https://leetcode.com/problems/binary-tree-level-order-traversal/
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
-    if(!root) return []
-   let queue = [root]; 
-    let res = [];
-   while(queue.length) {
-       let levelNodes = [];
-       let levelLen = queue.length
-       while(levelLen) {
-        let current = queue.shift()
-        if(current.left) queue.push(current.left)
-        if(current.right) queue.push(current.right)
-        levelNodes.push(current.val)
-        levelLen--
-       }
-        res.push(levelNodes)
-   }
-   return res;
+var levelOrder = function (root) {
+  if (!root) return [];
+  let queue = [root];
+  let res = [];
+  while (queue.length) {
+    let levelNodes = [];
+    let levelLen = queue.length;
+    while (levelLen) {
+      let current = queue.shift();
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+      levelNodes.push(current.val);
+      levelLen--;
+    }
+    res.push(levelNodes);
+  }
+  return res;
 };
 ```
 
@@ -994,55 +1002,55 @@ https://leetcode.com/problems/implement-trie-prefix-tree/description/
 > Code is enough
 
 ```javascript
-var Trie = function() {
-    this.root = {}
+var Trie = function () {
+  this.root = {};
 };
 
-/** 
+/**
  * @param {string} word
  * @return {void}
  */
-Trie.prototype.insert = function(word) {
-    let node = this.root
-    for(let ch of word) {
-        if(!node[ch]) node[ch] = {}
-        node = node[ch]
-    }
-    node.isWord = true
+Trie.prototype.insert = function (word) {
+  let node = this.root;
+  for (let ch of word) {
+    if (!node[ch]) node[ch] = {};
+    node = node[ch];
+  }
+  node.isWord = true;
 };
 
-/** 
+/**
  * @param {string} word
  * @return {boolean}
  */
-Trie.prototype.traverse = function(word) {
-    let node = this.root
-    for(let ch of word) {
-        node = node[ch]
-        if(!node) return null
-    }
-    return node
+Trie.prototype.traverse = function (word) {
+  let node = this.root;
+  for (let ch of word) {
+    node = node[ch];
+    if (!node) return null;
+  }
+  return node;
 };
 
-/** 
+/**
  * @param {string} word
  * @return {boolean}
  */
-Trie.prototype.search = function(word) {
-    let node = this.traverse(word)
-    return node !== null && node.isWord === true
+Trie.prototype.search = function (word) {
+  let node = this.traverse(word);
+  return node !== null && node.isWord === true;
 };
 
-/** 
+/**
  * @param {string} prefix
  * @return {boolean}
  */
-Trie.prototype.startsWith = function(prefix) {
-    const node = this.traverse(prefix)
-    return node !== null
+Trie.prototype.startsWith = function (prefix) {
+  const node = this.traverse(prefix);
+  return node !== null;
 };
 
-/** 
+/**
  * Your Trie object will be instantiated and called as such:
  * var obj = new Trie()
  * obj.insert(word)
@@ -1065,46 +1073,46 @@ https://leetcode.com/problems/minimum-window-substring/description/
  * @param {string} t
  * @return {string}
  */
-var minWindow = function(s, t) {
-   let map = new Map()
+var minWindow = function (s, t) {
+  let map = new Map();
 
-   for(let letter of t) {
-       if(map.has(letter)) {
-           map.set(letter, map.get(letter)+1)
-       } else {
-           map.set(letter, 1)
-       }
-   }
+  for (let letter of t) {
+    if (map.has(letter)) {
+      map.set(letter, map.get(letter) + 1);
+    } else {
+      map.set(letter, 1);
+    }
+  }
 
-   let left = 0;
-   let right = 0;
-   let count = map.size;
-   let len = Infinity
-   let minWindow = ''
+  let left = 0;
+  let right = 0;
+  let count = map.size;
+  let len = Infinity;
+  let minWindow = "";
 
-   while(right < s.length) {
-       let rLetter = s[right]
-       if(map.has(rLetter)) {
-           map.set(rLetter, map.get(rLetter)-1)
-           if(map.get(rLetter) === 0) count--;
-       }
-        right++
+  while (right < s.length) {
+    let rLetter = s[right];
+    if (map.has(rLetter)) {
+      map.set(rLetter, map.get(rLetter) - 1);
+      if (map.get(rLetter) === 0) count--;
+    }
+    right++;
 
-       while(count === 0) {
-           if(right - left < len) {
-               len = right - left
-               minWindow = s.slice(left, right)
-           }
+    while (count === 0) {
+      if (right - left < len) {
+        len = right - left;
+        minWindow = s.slice(left, right);
+      }
 
-           let lLetter = s[left]
-           if(map.has(lLetter)) {
-               map.set(lLetter, map.get(lLetter) + 1)
-               if(map.get(lLetter) > 0) count++
-           }
-           left++
-       }
-   }
-   return minWindow
+      let lLetter = s[left];
+      if (map.has(lLetter)) {
+        map.set(lLetter, map.get(lLetter) + 1);
+        if (map.get(lLetter) > 0) count++;
+      }
+      left++;
+    }
+  }
+  return minWindow;
 };
 ```
 
@@ -1153,24 +1161,24 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/des
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-   let longest = 0
-   let left = 0
-   let right = 0
-   let set = new Set()
+var lengthOfLongestSubstring = function (s) {
+  let longest = 0;
+  let left = 0;
+  let right = 0;
+  let set = new Set();
 
-   while(right < s.length) {
-       const letter = s[right]
-       if(!set.has(letter)) {
-           set.add(letter)
-           longest = Math.max(set.size, longest)
-           right++
-       } else {
-           set.delete(s[left])
-           left++
-       }
-   }
-   return longest
+  while (right < s.length) {
+    const letter = s[right];
+    if (!set.has(letter)) {
+      set.add(letter);
+      longest = Math.max(set.size, longest);
+      right++;
+    } else {
+      set.delete(s[left]);
+      left++;
+    }
+  }
+  return longest;
 };
 ```
 
@@ -1210,19 +1218,19 @@ https://leetcode.com/problems/longest-consecutive-sequence/
  * @param {number[]} nums
  * @return {number}
  */
-var longestConsecutive = function(nums) {
-   let set = new Set(nums)
-    let streak  = 0
-   for(let num of set) {
-       if(set.has(num - 1)) continue
-       let currentStreak = 1
-       while(set.has(num+1)) {
-           currentStreak++
-           num++
-       }
-       streak = Math.max(streak, currentStreak)
-   }
-   return streak
+var longestConsecutive = function (nums) {
+  let set = new Set(nums);
+  let streak = 0;
+  for (let num of set) {
+    if (set.has(num - 1)) continue;
+    let currentStreak = 1;
+    while (set.has(num + 1)) {
+      currentStreak++;
+      num++;
+    }
+    streak = Math.max(streak, currentStreak);
+  }
+  return streak;
 };
 ```
 
@@ -1237,27 +1245,27 @@ https://leetcode.com/problems/longest-palindromic-substring/description/
  * @param {string} s
  * @return {string}
  */
- var longestPalindrome = function(s) {
-    let largest = '';
-    function isPalin(s, left, right) {
-         while(left >=0 && right < s.length && s[left] === s[right]) {
-             left--;
-             right++;
-         }
-         return s.slice(left+1, right)
+var longestPalindrome = function (s) {
+  let largest = "";
+  function isPalin(s, left, right) {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+      left--;
+      right++;
     }
- 
-     for(let i = 0; i < s.length; i++) {
-         let oddPal = isPalin(s,i,i)
-         let evenPal = isPalin(s,i, i+1)
- 
-         let currLargest = oddPal.length > evenPal.length ? oddPal : evenPal
-         if(currLargest.length > largest.length) {
-             largest = currLargest
-         }
-     }
-     return largest
- };
+    return s.slice(left + 1, right);
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    let oddPal = isPalin(s, i, i);
+    let evenPal = isPalin(s, i, i + 1);
+
+    let currLargest = oddPal.length > evenPal.length ? oddPal : evenPal;
+    if (currLargest.length > largest.length) {
+      largest = currLargest;
+    }
+  }
+  return largest;
+};
 ```
 
 ## Graphs
@@ -1281,22 +1289,22 @@ https://leetcode.com/problems/clone-graph/description/
  * @param {Node} node
  * @return {Node}
  */
-var cloneGraph = function(node) {
-    let visited = {}
-    function dfs(node) {
-        if(!node) return node
-        if(visited[node.val]) return visited[node.val]
+var cloneGraph = function (node) {
+  let visited = {};
+  function dfs(node) {
+    if (!node) return node;
+    if (visited[node.val]) return visited[node.val];
 
-        let root = new Node(node.val)
-        visited[node.val] = root
+    let root = new Node(node.val);
+    visited[node.val] = root;
 
-        for(let neighbor of node.neighbors) {
-            root.neighbors.push(dfs(neighbor))
-        }
-
-        return root
+    for (let neighbor of node.neighbors) {
+      root.neighbors.push(dfs(neighbor));
     }
 
-    return dfs(node)
+    return root;
+  }
+
+  return dfs(node);
 };
 ```
