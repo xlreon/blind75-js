@@ -289,6 +289,36 @@ var merge = function (intervals) {
 };
 ```
 
+### Combination Sum - Medium
+
+https://leetcode.com/problems/combination-sum/description/
+
+> use recursion to solve, create dfs function check edge cases if target is 0 then add the res to result arr orelse loop through the candidates array and for each step call the dfs function and subtract the current value from target
+
+```javascript
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function (candidates, target) {
+  let res = [];
+
+  function dfs(index, current, arr) {
+    if (current < 0) return;
+    if (current === 0) res.push([...arr]);
+
+    for (let i = index; i < candidates.length; i++) {
+      arr.push(candidates[i]);
+      dfs(i, current - candidates[i], arr);
+      arr.pop();
+    }
+  }
+  dfs(0, target, []);
+  return res;
+};
+```
+
 ## Matrix
 
 ### Set Matrix Zeroes - Medium
