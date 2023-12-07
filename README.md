@@ -319,6 +319,34 @@ var combinationSum = function (candidates, target) {
 };
 ```
 
+### Non-overlapping Intervals - Medium
+
+https://leetcode.com/problems/non-overlapping-intervals/description/
+
+> Sort the intervals by their end time, maintain a prev position and check for every iteration is the current start is less than prev end then there is an overlap hence increase count orelse just assign prev to curr, return count
+
+```javascript
+/**
+ * @param {number[][]} intervals
+ * @return {number}
+ */
+var eraseOverlapIntervals = function (intervals) {
+  let count = 0;
+  let prev = 0;
+
+  intervals = intervals.sort((a, b) => a[1] - b[1]);
+
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i][0] < intervals[prev][1]) {
+      count++;
+    } else {
+      prev = i;
+    }
+  }
+  return count;
+};
+```
+
 ### Insert Intervals - Medium
 
 https://leetcode.com/problems/insert-interval/
