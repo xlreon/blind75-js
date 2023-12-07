@@ -319,6 +319,46 @@ var combinationSum = function (candidates, target) {
 };
 ```
 
+### Insert Intervals - Medium
+
+https://leetcode.com/problems/insert-interval/
+
+> First check if the current intervals end is less than the start of newInterval if yes then add to result array and move pointer, now check if start of current is less than end of new, if yes then take min, max of both intervals and increase the pointer to next and after that add the updated newInterval, finally for the remaining elements add it to the result and return result
+
+```javascript
+/**
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
+ * @return {number[][]}
+ */
+var insert = function (intervals, newInterval) {
+  let res = [];
+  let i = 0;
+  const start = 0;
+  const end = 1;
+
+  while (i < intervals.length && intervals[i][end] < newInterval[start]) {
+    res.push(intervals[i]);
+    i++;
+  }
+
+  while (i < intervals.length && intervals[i][start] <= newInterval[end]) {
+    newInterval[start] = Math.min(intervals[i][start], newInterval[start]);
+    newInterval[end] = Math.max(intervals[i][end], newInterval[end]);
+    i++;
+  }
+
+  res.push(newInterval);
+
+  while (i < intervals.length) {
+    res.push(intervals[i]);
+    i++;
+  }
+
+  return res;
+};
+```
+
 ## Matrix
 
 ### Set Matrix Zeroes - Medium
