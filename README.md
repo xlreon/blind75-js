@@ -257,6 +257,38 @@ var containsDuplicate = function (nums) {
 };
 ```
 
+### Merge Intervals - Medium
+
+https://leetcode.com/problems/merge-intervals/
+
+> sort the intevals by start time, take prev and curr, check if current[start] <= prev[end], if so then update prev[end] to max of current end or prev end orelse just push the current interval to result array and set prev to current.
+
+```javascript
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function (intervals) {
+  let start = 0;
+  let end = 1;
+
+  intervals = intervals.sort((a, b) => a[start] - b[start]);
+  let prev = intervals[0];
+  let res = [prev];
+
+  for (let current of intervals) {
+    if (current[start] <= prev[end]) {
+      prev[end] = Math.max(current[end], prev[end]);
+    } else {
+      res.push(current);
+      prev = current;
+    }
+  }
+
+  return res;
+};
+```
+
 ## Matrix
 
 ### Set Matrix Zeroes - Medium
